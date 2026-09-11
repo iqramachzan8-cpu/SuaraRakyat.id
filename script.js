@@ -5,6 +5,7 @@ let currentUser = null;
 let cameraStream = null;
 let isSocialCustomLogin = false;
 let selectedCategories = [];
+let currentFacingMode = 'environment'; // Mode default kamera belakang ("environment")
 
 const ALL_CATEGORIES = [
     "🛣️ Jalan Rusak / Berlubang",
@@ -136,6 +137,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const webcamCanvas = document.getElementById('webcamCanvas');
     const btnSnap = document.getElementById('btnSnap');
     const btnCloseCam = document.getElementById('btnCloseCam');
+    const btnSwitchCam = document.getElementById('btnSwitchCam'); // Tombol Switch Kamera Baru
 
     if (btnOpenLogin) {
         btnOpenLogin.addEventListener('click', () => {
@@ -264,16 +266,28 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
     }
 
-    // Kamera Real Stream
-    async function openRealCamera() {
+    // Kamera Real Stream (Dukungan Switch Depan/Belakang)
+    async function openRealCamera(facingMode = currentFacingMode) {
+        if (cameraStream) {
+            cameraStream.getTracks().forEach(track => track.stop());
+        }
+
         try {
-            cameraStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+            cameraStream = await navigator.mediaDevices.getUserMedia({ 
+                video: { facingMode: facingMode } 
+            });
             if (webcamVideo) webcamVideo.srcObject = cameraStream;
             if (modalCamera) modalCamera.classList.add('active');
         } catch (err) {
-            alert("Tidak dapat mengakses kamera. Pastikan izin kamera aktif!");
+            alert("Tidak dapat mengakses kamera. Pastikan izin kamera aktif di HP kamu!");
         }
     }
+
+    // Fungsi Switch Kamera (Depan <-> Belakang)
+    window.switchCamera = function() {
+        currentFacingMode = (currentFacingMode === 'user') ? 'environment' : 'user';
+        openRealCamera(currentFacingMode);
+    };
 
     function stopCamera() {
         if (cameraStream) {
@@ -283,6 +297,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     if (btnCloseCam) btnCloseCam.addEventListener('click', stopCamera);
+    if (btnSwitchCam) btnSwitchCam.addEventListener('click', window.switchCamera);
 
     // FITUR AMBIL FOTO: Otomatis Baca GPS Presisi Tinggi Saat Dijebret
     if (btnSnap) {
@@ -290,6 +305,13 @@ document.addEventListener('DOMContentLoaded', function() {
             const context = webcamCanvas.getContext('2d');
             webcamCanvas.width = webcamVideo.videoWidth;
             webcamCanvas.height = webcamVideo.videoHeight;
+
+            // Jika sedang menggunakan kamera depan, balik gambar secara horizontal (mirror) agar tampak alami
+            if (currentFacingMode === 'user') {
+                context.translate(webcamCanvas.width, 0);
+                context.scale(-1, 1);
+            }
+
             context.drawImage(webcamVideo, 0, 0, webcamCanvas.width, webcamCanvas.height);
 
             const imageDataUrl = webcamCanvas.toDataURL('image/png');
