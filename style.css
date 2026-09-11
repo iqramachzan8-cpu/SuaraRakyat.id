@@ -1,0 +1,429 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: 'Quicksand', sans-serif;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+.navbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    background: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(8px);
+}
+
+.logo {
+    font-size: clamp(14px, 4vw, 24px);
+    margin: 0;
+    font-weight: 700;
+}
+
+.logo span {
+    color: #00d2ff;
+}
+
+.btn-nav-login {
+    padding: 6px 16px;
+    border: 1px solid #00d2ff;
+    border-radius: 20px;
+    background: transparent;
+    color: #00d2ff;
+    font-size: clamp(10px, 2.5vw, 14px);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-nav-login:hover {
+    background: #00d2ff;
+    color: #1a1a1a;
+}
+
+.hero-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 15px;
+    min-height: 80vh;
+}
+
+.hero-text-box {
+    text-align: center;
+    max-width: 700px;
+}
+
+.badge {
+    background: rgba(0, 210, 255, 0.15);
+    color: #00d2ff;
+    border: 1px solid rgba(0, 210, 255, 0.3);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: clamp(10px, 2vw, 12px);
+    font-weight: 600;
+    display: inline-block;
+}
+
+.hero-text-box h1 {
+    font-size: clamp(20px, 6vw, 42px);
+    margin: 15px 0;
+    line-height: 1.2;
+}
+
+.hero-text-box p {
+    font-size: clamp(12px, 3.5vw, 18px);
+    color: #cccccc;
+}
+
+.container, .report-card, .camera-modal-card {
+    width: 90%;
+    max-width: 480px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: clamp(12px, 4vw, 25px);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    position: relative;
+    margin: 20px auto;
+}
+
+.form-header-back {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.btn-back {
+    background: transparent;
+    border: none;
+    color: #00d2ff;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+    margin-bottom: 12px;
+}
+
+label {
+    display: block;
+    margin-top: 12px;
+    font-size: clamp(11px, 2.5vw, 13px);
+    font-weight: 600;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 4px;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 8px;
+    outline: none;
+    color: #ffffff;
+    font-family: 'Quicksand', sans-serif;
+    font-size: clamp(11px, 2.5vw, 14px);
+}
+
+select option {
+    background: #1a2a3a;
+    color: #ffffff;
+}
+
+textarea {
+    resize: vertical;
+    height: 70px;
+}
+
+.category-chips {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 6px;
+}
+
+.chip {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.chip.active {
+    background: #00d2ff;
+    color: #1a1a1a;
+    font-weight: bold;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 10px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #00d2ff, #3a7bd5);
+    color: #ffffff;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: clamp(11px, 2.5vw, 14px);
+}
+
+#map {
+    width: 100%;
+    height: 220px;
+    border-radius: 8px;
+    margin-top: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    z-index: 1;
+    background: #242f3e;
+}
+
+/* Styling Peta Google Maps Box */
+.map-box {
+    margin-top: 8px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Group Options Dropdown */
+select optgroup {
+    background: #101c26;
+    color: #00d2ff;
+    font-weight: bold;
+}
+
+select option {
+    background: #1a2a3a;
+    color: #ffffff;
+}
+
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+    background: #1a2a3a !important;
+    color: #fff !important;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    margin: 15px 0 10px;
+    color: #ccc;
+    font-size: clamp(9px, 2vw, 11px);
+}
+
+.divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.divider span { padding: 0 8px; }
+
+.social-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+.btn-social {
+    padding: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.08);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-icon {
+    width: clamp(14px, 4vw, 20px);
+    height: clamp(14px, 4vw, 20px);
+}
+
+.google-account-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.google-account-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.google-account-item:hover {
+    background: rgba(0, 210, 255, 0.15);
+}
+
+.google-account-item .avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #fff;
+}
+
+.google-account-item .acc-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.google-account-item .acc-info strong { font-size: 13px; }
+.google-account-item .acc-info span { font-size: 11px; color: #ccc; }
+
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(6px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.btn-close {
+    position: absolute;
+    top: 10px; right: 15px;
+    background: transparent; border: none;
+    color: #fff; font-size: 20px; cursor: pointer;
+}
+
+#webcamVideo, #previewImage {
+    width: 100%;
+    max-height: 180px;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-top: 10px;
+}
+
+.camera-controls {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* Tracker Feed Laporan Modern */
+.report-feed {
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px dashed rgba(255,255,255,0.2);
+}
+
+.feed-item {
+    background: rgba(0,0,0,0.2);
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin-top: 8px;
+    font-size: 11px;
+}
+
+.feed-item .status {
+    color: #00d2ff;
+    font-weight: bold;
+    float: right;
+}
+
+/* Filter Feed & Search */
+.feed-controls {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.feed-controls input {
+    margin-top: 0;
+    padding: 6px 10px;
+}
+
+/* Upvote Button */
+.btn-upvote {
+    background: rgba(0, 210, 255, 0.15);
+    border: 1px solid #00d2ff;
+    color: #00d2ff;
+    border-radius: 6px;
+    padding: 3px 8px;
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-upvote:hover {
+    background: #00d2ff;
+    color: #121212;
+}
+
+/* Badge Status Dynamic */
+.badge-status {
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: bold;
+    float: right;
+}
+
+.badge-status.pending { background: #ff9800; color: #fff; }
+.badge-status.process { background: #00d2ff; color: #121212; }
+.badge-status.done { background: #2ed573; color: #fff; }
+
+/* MEDIA QUERIES */
+@media (max-width: 280px) {
+    .navbar { padding: 10px; }
+    .container, .report-card, .camera-modal-card {
+        width: 98%;
+        padding: 8px;
+        border-radius: 8px;
+    }
+    .social-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .category-chips { flex-direction: column; }
+}
+
+@media (min-width: 768px) {
+    .container, .report-card {
+        max-width: 600px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .hero-text-box h1 { font-size: 60px; }
+    .hero-text-box p { font-size: 24px; }
+    .container, .report-card {
+        max-width: 650px;
+    }
+}
